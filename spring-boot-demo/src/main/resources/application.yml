@@ -1,0 +1,21 @@
+
+#server:
+#  port : 8888
+#  application:
+#    name : hello
+
+book:
+  name: SpringCloud
+  author: jipeng
+  desc: ${book.author} is writing《${book.name}》
+
+spring:
+  profiles:
+    active: dev
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

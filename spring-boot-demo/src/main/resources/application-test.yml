@@ -1,0 +1,11 @@
+
+server:
+  port : 2244
+  application:
+    name : hello
+
+
+book:
+  name: SpringCloud-test
+  author: jipeng-test
+  desc: ${book.author} is writing《${book.name}》
