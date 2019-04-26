@@ -1,0 +1,12 @@
+server:
+  port : 8002
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:9001/eureka/,http://peer2:9002/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+     #启用注册IP
+    prefer-ip-address: true

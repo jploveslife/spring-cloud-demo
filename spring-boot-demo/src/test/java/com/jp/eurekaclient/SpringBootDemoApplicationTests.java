@@ -1,4 +1,4 @@
-package com.jp.springbootdemo;
+package com.jp.eurekaclient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
