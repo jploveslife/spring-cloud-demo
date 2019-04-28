@@ -1,6 +1,6 @@
 package com.jp.eurekaclient;
 
-import com.jp.eurekaclient.controller.HelloController;
+import com.jp.eurekaclient.controller.ConsumerController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class HelloControllerTests {
 
     @Before
     public void setUp() throws Exception{
-        mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
+        mvc = MockMvcBuilders.standaloneSetup(new ConsumerController()).build();
     }
 
     @Test

@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
  * @Date: Created in 2019/4/24 8:04
  */
 @RestController
-public class HelloController {
+public class ConsumerController {
 
     @Autowired
     RestTemplate restTemplate;
