@@ -7,6 +7,8 @@ import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * @Author: jipeng
  * @Description:
@@ -21,7 +23,16 @@ public class HelloController {
     private Registration registration; // 服务注册
 
     @RequestMapping("/hello")
-    public Object hello(){
+    public Object hello() throws InterruptedException {
+
+        /**
+         * 让线程等待几秒，触发hystrix的超时
+         * Hystrix 的默认超时时间为2000毫秒
+         */
+        int sleepTime = new Random().nextInt(3000);
+        logger.info("sleepTime : " + sleepTime);
+        Thread.sleep(sleepTime);
+
         logger.info("/hello ,host:{},service_id:{}",registration.getHost(),registration.getServiceId());
         return "Hello World";
     }
