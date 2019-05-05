@@ -1,6 +1,6 @@
-package com.jp.eurekaclient.controller;
+package com.jp.hystrixconsumer.controller;
 
-import com.jp.eurekaclient.service.HelloService;
+import com.jp.hystrixconsumer.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,8 @@
 package com.jp.feignconsumer.controller;
 
+import com.jp.feignconsumer.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -14,11 +16,12 @@ import org.springframework.web.client.RestTemplate;
 public class HelloController {
 
     @Autowired
-    RestTemplate restTemplate;
+    HelloService helloService;
 
     @RequestMapping("/hello")
     public Object hello(){
-        return restTemplate.getForEntity("http://hello-service/hello",String.class).getBody();
+        return helloService.hello();
+
     }
 
 }

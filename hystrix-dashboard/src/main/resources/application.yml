@@ -1,0 +1,14 @@
+spring:
+  application:
+    name:  hystrix-dashboard
+
+server:
+  port : 7021
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,6 +1,6 @@
-package com.jp.eurekaclient;
+package com.jp.hystrixconsumer;
 
-import com.jp.eurekaclient.controller.HystrixConsumerController;
+import com.jp.hystrixconsumer.controller.HystrixConsumerController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

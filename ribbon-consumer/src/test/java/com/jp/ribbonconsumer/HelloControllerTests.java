@@ -1,6 +1,6 @@
-package com.jp.eurekaclient;
+package com.jp.ribbonconsumer;
 
-import com.jp.eurekaclient.controller.ConsumerController;
+import com.jp.ribbonconsumer.controller.ConsumerController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

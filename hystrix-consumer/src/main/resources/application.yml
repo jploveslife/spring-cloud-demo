@@ -1,6 +1,6 @@
 spring:
   application:
-    name:  ribbon-consumer
+    name:  hystrix-consumer
 
 server:
   port : 7051

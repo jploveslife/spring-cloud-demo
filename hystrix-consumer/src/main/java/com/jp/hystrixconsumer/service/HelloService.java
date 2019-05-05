@@ -1,4 +1,4 @@
-package com.jp.eurekaclient.service;
+package com.jp.hystrixconsumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
@@ -20,7 +20,10 @@ public class HelloService {
     @Autowired
     RestTemplate restTemplate;
 
-
+    /**
+     *  HystrixCommand 是熔断器注解 ，fallbackMethod 参数指定请求出错后调用的方法
+     * @return
+     */
     @HystrixCommand(fallbackMethod = "helloFallback")
     public String hello(){
         long start = System.currentTimeMillis();
