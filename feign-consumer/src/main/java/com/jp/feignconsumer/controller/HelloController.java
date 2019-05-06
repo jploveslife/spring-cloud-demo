@@ -27,10 +27,10 @@ public class HelloController {
 
 
     @RequestMapping(value = "/hello1", method = RequestMethod.GET)
-    public Object hello1(@RequestParam String name){
+    public Object hello1(){
         StringBuilder sb = new StringBuilder("");
         sb.append(helloService.hello()).append("\n")
-                .append(helloService.hello1(name)).append("\n")
+                .append(helloService.hello1("jp")).append("\n")
                 .append(helloService.hello2("jp",30)).append("\n")
                 .append(helloService.hello3(new User("jp",30))).append("\n");
 

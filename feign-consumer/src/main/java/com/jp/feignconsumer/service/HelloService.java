@@ -31,14 +31,14 @@ public interface HelloService {
     String hello();
 
     @RequestMapping(value = "/hello1", method = RequestMethod.GET)
-    Object hello1(@RequestParam("name")String name);
+    String hello1(@RequestParam("name")String name);
 
 
     @RequestMapping(value = "/hello2", method = RequestMethod.GET)
-    Object hello2(@RequestHeader("name")String name,@RequestHeader("age")Integer age);
+    User hello2(@RequestHeader("name")String name,@RequestHeader("age")Integer age);
 
 
     @RequestMapping(value = "/hello3", method = RequestMethod.POST)
-    Object hello3(@RequestBody User user);
+    String hello3(@RequestBody User user);
 
 }

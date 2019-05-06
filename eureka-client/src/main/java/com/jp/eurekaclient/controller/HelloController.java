@@ -38,18 +38,18 @@ public class HelloController {
     }
 
     @RequestMapping("/hello1")
-    public Object hello1(@RequestParam String name){
+    public String hello1(@RequestParam String name){
         return "hello" + name;
     }
 
 
     @RequestMapping("/hello2")
-    public Object hello2(@RequestHeader String name,@RequestHeader Integer age){
+    public User hello2(@RequestHeader String name,@RequestHeader Integer age){
         return new User(name,age);
     }
 
-
-    public Object hello3(@RequestBody User user){
+    @RequestMapping("/hello3")
+    public String hello3(@RequestBody User user){
         return "Hello "+ user.getName() + "," + user.getAge();
     }
 }

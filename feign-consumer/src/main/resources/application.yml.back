@@ -15,6 +15,11 @@ eureka:
      #启用注册IP
     prefer-ip-address: true
 
+
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 500
+
 #management:
 #  endpoints:
 #    web:

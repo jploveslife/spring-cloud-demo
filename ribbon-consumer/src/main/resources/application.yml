@@ -1,6 +1,10 @@
 spring:
   application:
     name:  ribbon-consumer
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
 server:
   port : 7001
@@ -15,8 +19,24 @@ eureka:
      #启用注册IP
     prefer-ip-address: true
 
+hello-service:
+  ribbon:
+    ConnectTimeout: 2000
+    ReadTimeout: 2000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 1
+
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
