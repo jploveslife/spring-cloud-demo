@@ -1,12 +1,13 @@
 package com.jp.feignconsumer.service;
 
+import com.jp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -21,8 +22,23 @@ public interface HelloService {
 
     /**
      * 通过 Feign 创建一个声明式服务调用
+     * 通过上面的 执行feignClient和RequestMapping 对应，就是调用hello-service服务中的 /hello 地址
+     *
+     * 无参数调用
      * @return
      */
     @RequestMapping("/hello")
     String hello();
+
+    @RequestMapping(value = "/hello1", method = RequestMethod.GET)
+    Object hello1(@RequestParam("name")String name);
+
+
+    @RequestMapping(value = "/hello2", method = RequestMethod.GET)
+    Object hello2(@RequestHeader("name")String name,@RequestHeader("age")Integer age);
+
+
+    @RequestMapping(value = "/hello3", method = RequestMethod.POST)
+    Object hello3(@RequestBody User user);
+
 }

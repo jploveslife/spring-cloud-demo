@@ -1,9 +1,9 @@
 spring:
   application:
-    name:  feign-consumer
+    name:  ribbon-consumer
 
 server:
-  port : 7011
+  port : 7001
 
 eureka:
   client:
@@ -15,8 +15,8 @@ eureka:
      #启用注册IP
     prefer-ip-address: true
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,11 +1,11 @@
 package com.jp.eurekaclient.controller;
 
+import com.jp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
@@ -31,10 +31,25 @@ public class HelloController {
          */
         int sleepTime = new Random().nextInt(3000);
         logger.info("sleepTime : " + sleepTime);
-        Thread.sleep(sleepTime);
+//        Thread.sleep(sleepTime);
 
         logger.info("/hello ,host:{},service_id:{}",registration.getHost(),registration.getServiceId());
         return "Hello World";
     }
 
+    @RequestMapping("/hello1")
+    public Object hello1(@RequestParam String name){
+        return "hello" + name;
+    }
+
+
+    @RequestMapping("/hello2")
+    public Object hello2(@RequestHeader String name,@RequestHeader Integer age){
+        return new User(name,age);
+    }
+
+
+    public Object hello3(@RequestBody User user){
+        return "Hello "+ user.getName() + "," + user.getAge();
+    }
 }
