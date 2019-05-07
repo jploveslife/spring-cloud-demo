@@ -1,6 +1,7 @@
 package com.jp.feignconsumer.controller;
 
 import com.jp.feignconsumer.service.HelloService;
+import com.jp.feignconsumer.service.TestService;
 import com.jp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class HelloController {
     @Autowired
     HelloService helloService;
 
+    @Autowired
+    TestService testService;
+
     @RequestMapping("/hello")
     public Object hello(){
         return helloService.hello();
@@ -35,6 +39,13 @@ public class HelloController {
                 .append(helloService.hello3(new User("jp",30))).append("\n");
 
         return sb.toString();
+    }
+
+
+    @RequestMapping("/test")
+    public Object test(){
+        return testService.test();
+
     }
 
 
