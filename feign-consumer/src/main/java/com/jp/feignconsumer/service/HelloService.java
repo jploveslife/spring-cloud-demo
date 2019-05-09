@@ -1,5 +1,6 @@
 package com.jp.feignconsumer.service;
 
+import com.jp.feignconsumer.fallback.HelloServiceFallback;
 import com.jp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 
 //这里 hello-service 是服务应用名
-@FeignClient("hello-service")
+@FeignClient(name = "hello-service", fallback = HelloServiceFallback.class)
 public interface HelloService {
 
     /**
