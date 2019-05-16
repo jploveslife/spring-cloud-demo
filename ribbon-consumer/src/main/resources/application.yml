@@ -6,6 +6,9 @@ spring:
       retry:
         enabled: true
 
+# spring.cloud.loadbalancer.retry.enabled 该参数用来开启重试机制，默认是关闭的
+
+
 server:
   port : 7001
 
@@ -21,11 +24,11 @@ eureka:
 
 hello-service:
   ribbon:
-    ConnectTimeout: 2000
-    ReadTimeout: 2000
-    OkToRetryOnAllOperations: true
-    MaxAutoRetriesNextServer: 2
-    MaxAutoRetries: 1
+    ConnectTimeout: 2000      # 请求连接的超时时间
+    ReadTimeout: 2000         #  请求处理的超时时间
+    OkToRetryOnAllOperations: true    # 对所有请求都进行重试
+    MaxAutoRetriesNextServer: 2       # 切换实例重试的次数，就是切换实例的次数
+    MaxAutoRetries: 1                  # 对当前实例重试的次数，就是切换到这个实例，重试几次
 
 
 management:
@@ -40,3 +43,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
+
+# hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds    断路器的时间需要大于 Ribbon的超时时间，不然不会触发重试
+# 实际是会触发重试，但是断路器已经返回了，重试没也卵用

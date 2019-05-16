@@ -9,3 +9,33 @@ management:
     web:
       exposure:
         include: "*"
+  server:
+    servlet:
+      #为应用重新设置了地址前缀
+      context-path: /hello
+eureka:
+  instance:
+    # 设置了 context-path 后所有监控端点都会加入前缀，所以我们要为 /info /health 端点也加上类似的前缀
+    status-page-url-path: ${management.server.servlet.context-path}/info
+    health-check-url-path: ${management.server.servlet.context-path}/health
+    # status-page-url-path和health-check-url-path都有一个共同特点，他们都是使用相对路径来进行配置
+    #由于Eureka服务注册中心默认会以HTTP的方式访问和暴露这些端点，
+    #因此当客户端应用以Https的方式来暴露和监控端点时，相对路径的配置方式无法满足需求了
+    #所以 spring Cloud Eureka 还提供了绝对路径的配置参数
+    status-page-url: https://${eureka.instance.hostname}/info
+    health-check-url: https://${eureka.instance.hostname}/health
+    home-page-url:  https://${eureka.instance.hostname}
+
+# eureka instance 其他配置
+# preferIpAddress                     是否优先使用IP地址作为主机名的标识                    默认：false
+# leaseRenewalIntervalInSeconds       Eureka客户端向服务端发送心跳的时间间隔，单位秒        默认：30
+# leaseExpirationDurationInSeconds    Eureka 服务端在收到最后一次心跳之后等待的时间上限，单位为秒。
+#                                     超过该时间之后服务端会将该服务实例从服务清单中剔除，
+#                                     从而禁止服务调用请求被发送到该实例上                  默认：90
+# nonSecurePort                       非安全的通信端口号                                    默认：80
+# securePort                          安全的通信端口号                                      默认：443
+# nonSecurePortEnabled                是否启用非安全的通信端口号                             true
+# securePortEnabled                   是否启用安全的通信端口号
+# appname                             服务名，默认取 spring.application.name的配置，如果没有则为 unknown
+# hostname                            主机名，不配置的时候根据操作系统的主机名来获取
+

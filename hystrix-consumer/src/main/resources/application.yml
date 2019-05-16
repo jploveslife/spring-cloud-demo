@@ -20,3 +20,74 @@ management:
     web:
       exposure:
         include: "*"
+
+# Command 属性主要用来控制 HystrixCommand 命令的行为，它主要有下面5种不同类型的配置
+#
+# 1.execution 配置
+#   execution 配置控制的是 HystrixCommand.run() 的执行
+#
+#   hystrix.command.default.execution.isolation.strategy
+#   该属性用来设置 HystrixCommand.run() 执行的隔离策略      全局默认值： Thread
+#   隔离策略分为 Thread   和   Semaphore
+#   Thread ：  通过线程池隔离的策略。它在独立的线程上执行，并且它的并发限制受线程中线程数量的限制
+#   Semaphore：通过信号量隔离的策略，它在调用线程上执行，并且它的并发限制受信号量计数的限制
+#
+#   hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds
+#   该属性用来配置 HystrixCommand 执行的超时时间，单位毫秒         全局默认值：1000
+#   当 HystrixCommand 执行时间超过该配置后，Hystrix 会将该执行命令标记为 TIMEOUT 并进入服务降级处理逻辑
+#
+#   hystrix.command.default.execution.timeout.enabled
+#   该属性用来配置 HystrixCommand.run() 的执行是否启用超时时间      默认：true
+#   如果设置成 false , execution.isolation.thread.timeoutInMilliseconds 配置将不起作用
+#
+#   hystrix.command.default.execution.isolation.thread.interrupOnTimeout
+#   该属性用来配置当  HystrixCommand.run() 执行超时的时候是否要将它中断
+#
+#   hystrix.command.default.execution.isolation.thread.interrupOnCancel
+#   该属性用来配置当  HystrixCommand.run() 执行取消的时候是否要将它中断
+#
+#   hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests
+#   当 HystrixCommand 的隔离策略使用信号量的时候，该属性用来配置信号量的大小（并发请求数），当最大并发请求数达到该设置时，后续的请求将会被拒绝
+#   默认：10
+#
+# 2. fallback 配置
+#   下面的这些属性是用来控制  HystrixCommand.getFallback() 执行的，这些属性同时使用于线程池和信号量的隔离策略
+#
+#   hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests        默认：10
+#   该属性用来设置从调用线程中允许 HystrixCommand.getFallback() 方法执行的最大并发请求数
+#   当达到最大请求数时，后续的请求将会被拒绝和抛出异常，因为已经没有后续的 fallback 可以被调用了
+#
+#   hystrix.command.default.fallback.enabled        默认：true
+#   该属性用来设置服务降级策略是否启用，
+#   如果设置false,那么当请求失败或者拒绝发送时，将不会调用 HystrixCommand.getFallback() 来执行服务降级
+#
+# 3.circuitBreaker 配置
+#   该属性用来控制HystrixCircuitBreaker的行为
+#
+#   hystrix.command.default.circuitBreaker.enabled      默认：true
+#   该属性用来确定当服务请求命令失败时，是否使用断路器来跟踪器健康指标和熔断请求
+#
+#   hystrix.command.default.circuitBreaker.requestVolumeThreshold     默认值： 20
+#   该属性用来设置在滚动时间窗口中，断路器的最小请求数。
+#   例如，默认该值为20的时候，如果滚动时间窗（默认为10秒）内收到了19个请求，即使这19个请求都失败了，熔断器也不会打开
+#
+#   hystrix.command.default.circuitBreaker.sleepWindowInMilliseconds      默认值：5000
+#   该属性用来设置当断路器打开之后的休眠时间窗。休眠时间窗结束之后，会将断路器设置为半开状态，
+#   尝试熔断的请求命令，如果依然失败就将断路器继续设置为打开状态，如果成功则设置成关闭状态
+#
+#   hystrix.command.default.circuitBreaker.errorThresholdPercentage       默认：50
+#   该属性用来设置断路器打开的错误百分比条件
+#   例如：默认值为5000的情况下，标识在滚动时间窗中，在请求数量超过 circuitBreaker.requestVolumeThreshold 阀值的前提下，如果错误请求数的百分比超过50
+#   就把断路器设置为打开状态，否则就设置为关闭状态
+#
+#   hystrix.command.default.circuitBreaker.forceOpen      默认：fasle
+#   如果将该属性设置为 true ,断路器将强行进入 打开 状态，它会拒绝所有请求，该属性优先于 circuitBreaker.forceClosed 属性
+#
+#   hystrix.command.default.circuitBreaker.forceClosed      默认：fasle
+#   如果将该属性设置为 true ,断路器将强行进入 关闭 状态，它会接受所有请求，
+#   如果 circuitBreaker.forceOpen 为 true，该属性不生效
+#
+#
+#
+#
+#
