@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: api-gateway
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

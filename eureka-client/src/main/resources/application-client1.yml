@@ -8,7 +8,7 @@ eureka:
       #注册中心地址
       defaultZone: http://peer1:9001/eureka/,http://peer2:9002/eureka/
     #获取缓存服务清单的时间间隔，默认30秒
-    registry-fetch-interval-seconds=30: 30
+#    registry-fetch-interval-seconds: 30
   instance:
     #服务实例元数据，设置实例名，区分同一服务中不同实例的唯一标识
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
