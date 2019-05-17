@@ -9,22 +9,22 @@ management:
     web:
       exposure:
         include: "*"
-  server:
-    servlet:
-      #为应用重新设置了地址前缀
-      context-path: /hello
-eureka:
-  instance:
-    # 设置了 context-path 后所有监控端点都会加入前缀，所以我们要为 /info /health 端点也加上类似的前缀
-    status-page-url-path: ${management.server.servlet.context-path}/info
-    health-check-url-path: ${management.server.servlet.context-path}/health
-    # status-page-url-path和health-check-url-path都有一个共同特点，他们都是使用相对路径来进行配置
-    #由于Eureka服务注册中心默认会以HTTP的方式访问和暴露这些端点，
-    #因此当客户端应用以Https的方式来暴露和监控端点时，相对路径的配置方式无法满足需求了
-    #所以 spring Cloud Eureka 还提供了绝对路径的配置参数
-    status-page-url: https://${eureka.instance.hostname}/info
-    health-check-url: https://${eureka.instance.hostname}/health
-    home-page-url:  https://${eureka.instance.hostname}
+#  server:
+#    servlet:
+#      #为应用重新设置了地址前缀
+#      context-path: /hello
+#eureka:
+#  instance:
+#    # 设置了 context-path 后所有监控端点都会加入前缀，所以我们要为 /info /health 端点也加上类似的前缀
+#    status-page-url-path: ${management.server.servlet.context-path}/info
+#    health-check-url-path: ${management.server.servlet.context-path}/health
+#    # status-page-url-path和health-check-url-path都有一个共同特点，他们都是使用相对路径来进行配置
+#    #由于Eureka服务注册中心默认会以HTTP的方式访问和暴露这些端点，
+#    #因此当客户端应用以Https的方式来暴露和监控端点时，相对路径的配置方式无法满足需求了
+#    #所以 spring Cloud Eureka 还提供了绝对路径的配置参数
+#    status-page-url: https://${eureka.instance.hostname}/info
+#    health-check-url: https://${eureka.instance.hostname}/health
+#    home-page-url:  https://${eureka.instance.hostname}
 
 # eureka instance 其他配置
 # preferIpAddress                     是否优先使用IP地址作为主机名的标识                    默认：false
